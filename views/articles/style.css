@@ -1,0 +1,107 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #007bff;
+    padding: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .btn {
+    background: white;
+    color: #007bff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.navbar .btn:hover {
+    background: #0056b3;
+    color: white;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-primary { background: #007bff; color: white; }
+.btn-secondary { background: #6c757d; color: white; }
+.btn-info { background: #17a2b8; color: white; }
+.btn-danger { background: #dc3545; color: white; }
+
+.btn:hover { opacity: 0.9; }
+
+/* Forms */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Article Cards */
+.article-card {
+    background: white;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.article-card h2 {
+    margin-bottom: 5px;
+}
+
+.article-card .meta {
+    font-size: 0.9em;
+    color: gray;
+}
+
+.article-card .actions {
+    margin-top: 10px;
+}
+
+/* Single Article Page */
+.article-content {
+    margin-top: 20px;
+}
