@@ -172,7 +172,7 @@
             color: #28a745;
         }
 
-        /* Footer */
+        /* Footer
         footer {
             text-align: center;
             padding: 20px;
@@ -184,7 +184,7 @@
         footer p {
             margin: 0;
             font-size: 0.9rem;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -220,8 +220,26 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 My Creative Blog. All rights reserved.</p>
+        <p>&copy; <%= new Date().getFullYear() %> Blogs. All rights reserved.</p>
     </footer>
+    <style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+   
 
 </body>
 </html>
