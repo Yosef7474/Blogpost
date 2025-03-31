@@ -3,243 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@300;400&display=swap" rel="stylesheet">
+    <title>Blog Articles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Styles */
-        body {
-            font-family: 'Montserrat', sans-serif;
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --accent: #FFD166;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            color: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--dark);
             line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Roboto Slab', serif;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            min-height: 100vh;
+            padding-bottom: 80px; /* For footer */
         }
 
         /* Header */
         header {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #4c669f, #2a3e66);
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 15s infinite alternate ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-5%, -5%); }
+            100% { transform: translate(5%, 5%); }
+        }
+
+        header .header-content {
+            position: relative;
+            z-index: 1;
         }
 
         header h1 {
-            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
             margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         header p {
             font-size: 1.2rem;
-            margin-top: 10px;
+            margin: 15px 0 30px;
             opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Button */
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
             font-size: 1rem;
-            font-weight: 700;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: normal;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .btn-primary {
-            background: #2575fc;
-            color: white;
-            border: 2px solid #2575fc;
+            background: white;
+            color: var(--primary);
         }
 
         .btn-primary:hover {
-            background: transparent;
-            color: #2575fc;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
         }
 
         /* Blog Grid */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
-            padding: 20px;
+            padding: 20px 0;
         }
 
         /* Article Card */
         .article-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .article-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
-        .article-card img {
-            width: 100%;
+        .article-card-image {
             height: 200px;
-            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+        }
+
+        .article-card-image i {
+            z-index: 1;
+            opacity: 0.8;
         }
 
         .article-card-content {
-            padding: 20px;
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .article-card h4 {
-            font-size: 1.5rem;
-            margin: 0 0 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin: 0 0 15px;
+            color: var(--dark);
+            line-height: 1.4;
         }
 
         .article-card p {
             font-size: 1rem;
-            color: #666;
-            margin: 0 0 15px;
+            color: var(--gray);
+            margin: 0 0 20px;
+            flex-grow: 1;
         }
 
         .article-card .meta {
             font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 15px;
+            color: var(--gray);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-card .meta i {
+            font-size: 0.8rem;
         }
 
         .article-card .actions {
             display: flex;
-            gap: 10px;
-        }
-
-        .article-card .btn {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            border-radius: 20px;
-        }
-
-        .btn-edit {
-            background: #ffc107;
-            color: #333;
-            border: 2px solid #ffc107;
-        }
-
-        .btn-edit:hover {
-            background: transparent;
-            color: #ffc107;
-        }
-
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-            border: 2px solid #dc3545;
-        }
-
-        .btn-delete:hover {
-            background: transparent;
-            color: #dc3545;
+            gap: 12px;
+            margin-top: auto;
         }
 
         .btn-read {
-            background: #28a745;
+            background: var(--primary);
             color: white;
-            border: 2px solid #28a745;
         }
 
         .btn-read:hover {
-            background: transparent;
-            color: #28a745;
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
 
-        /* Footer
+        .btn-edit {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-edit:hover {
+            background: #ffc233;
+            transform: translateY(-3px);
+        }
+
+        .btn-delete {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #e51774;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            background: #2c3e50;
+            padding: 25px;
+            margin-top: 60px;
+            background: var(--dark);
             color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
         }
 
         footer p {
             margin: 0;
-            font-size: 0.9rem;
-        } */
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-card {
+                max-width: 100%;
+            }
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            right: 30px;
+            bottom: 100px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .fab:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: var(--secondary);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--gray);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
     </style>
 </head>
 <body>
 
     <!-- Header -->
     <header>
-        <h1>Articles</h1>
-        
-        <a href="/articles/new" class="btn btn-primary">New Article</a>
+        <div class="header-content">
+            <h1>Blog Articles</h1>
+            <p>Discover our latest insights, tutorials, and stories</p>
+            <a href="/articles/new" class="btn btn-primary">
+                <i class="fas fa-plus"></i> New Article
+            </a>
+        </div>
     </header>
 
     <!-- Blog Grid -->
     <div class="container">
         <div class="blog-grid">
-            <% articles.forEach(article => { %>
-                <div class="article-card">
-                    <div class="article-card-content">
-                        <h4><%= article.title %></h4>
-                        <p><%= article.markdown %></p>
-                        <div class="meta">Posted on <%= article.createdAt.toLocaleDateString() %></div>
-                        <div class="actions">
-                            <a href="articles/<%= article.slug %>" class="btn btn-read">Read More</a>
-                            <a href="/articles/edit/<%= article.id %>" class="btn btn-edit">Edit</a>
-                            <form action="/articles/<%= article.id %>?_method=DELETE" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-delete">Delete</button>
-                            </form>
+            <% if (articles.length === 0) { %>
+                <div class="empty-state">
+                    <i class="far fa-newspaper"></i>
+                    <h3>No Articles Yet</h3>
+                    <p>Be the first to create an article and share your knowledge with the community.</p>
+                    <a href="/articles/new" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create First Article
+                    </a>
+                </div>
+            <% } else { %>
+                <% articles.forEach(article => { %>
+                    <div class="article-card">
+                        <div class="article-card-image">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="article-card-content">
+                            <h4><%= article.title %></h4>
+                            <p>
+                                <%- article.markdown.length > 120 
+                                    ? article.markdown.substring(0, 120) + '...' 
+                                    : article.markdown 
+                                %>
+                            </p>
+                            <div class="meta">
+                                <i class="far fa-calendar-alt"></i>
+                                <%= article.createdAt.toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }) %>
+                            </div>
+                            <div class="actions">
+                                <a href="articles/<%= article.slug %>" class="btn btn-read">
+                                    <i class="fas fa-book-open"></i> Read
+                                </a>
+                                <a href="/articles/edit/<%= article.id %>" class="btn btn-edit">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <form action="/articles/<%= article.id %>?_method=DELETE" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-delete">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <% }) %>
+                <% }) %>
+            <% } %>
         </div>
     </div>
 
+    <!-- Floating Action Button -->
+    <a href="/articles/new" class="fab">
+        <i class="fas fa-plus"></i>
+    </a>
+
     <!-- Footer -->
     <footer>
-        <p>&copy; <%= new Date().getFullYear() %> Blogs. All rights reserved.</p>
+        <p>&copy; <%= new Date().getFullYear() %> Blog Platform. All rights reserved.</p>
     </footer>
-    <style>
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            background: #2c3e50;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
 
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-    </style>
-   
-
+    <script>
+        // Simple animation for cards when they come into view
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.article-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
